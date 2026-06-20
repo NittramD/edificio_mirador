@@ -1,0 +1,14 @@
+{
+  "name": "metall-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev:backend": "pnpm --filter @workspace/mirador-backend run dev",
+    "dev:frontend": "pnpm --filter @workspace/mirador-frontend run dev",
+    "build": "pnpm -r run build",
+    "typecheck": "pnpm -r run typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
