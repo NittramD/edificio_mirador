@@ -57,7 +57,7 @@ router.get("/usuarios", (_req: Request, res: Response) => {
 
 // GET /api/usuarios/:id – obtener uno
 router.get("/usuarios/:id", (req: Request, res: Response) => {
-  const id = parseInt(req.params["id"] ?? "0");
+  const id = parseInt(String(req.params["id"] ?? "0"));
   const usuario = usuarios.find(u => u.id === id);
   if (!usuario) {
     res.status(404).json({ error: "Usuario no encontrado" });
@@ -106,7 +106,7 @@ router.post("/usuarios", (req: Request, res: Response) => {
 
 // PUT /api/usuarios/:id – actualizar usuario
 router.put("/usuarios/:id", (req: Request, res: Response) => {
-  const id = parseInt(req.params["id"] ?? "0");
+  const id = parseInt(String(req.params["id"] ?? "0"));
   const idx = usuarios.findIndex(u => u.id === id);
   if (idx === -1) {
     res.status(404).json({ error: "Usuario no encontrado" });
@@ -130,7 +130,7 @@ router.put("/usuarios/:id", (req: Request, res: Response) => {
 
 // PATCH /api/usuarios/:id/estado – cambiar estado activo/inactivo
 router.patch("/usuarios/:id/estado", (req: Request, res: Response) => {
-  const id = parseInt(req.params["id"] ?? "0");
+  const id = parseInt(String(req.params["id"] ?? "0"));
   const idx = usuarios.findIndex(u => u.id === id);
   if (idx === -1) {
     res.status(404).json({ error: "Usuario no encontrado" });
@@ -148,7 +148,7 @@ router.patch("/usuarios/:id/estado", (req: Request, res: Response) => {
 
 // DELETE /api/usuarios/:id – eliminar usuario
 router.delete("/usuarios/:id", (req: Request, res: Response) => {
-  const id = parseInt(req.params["id"] ?? "0");
+  const id = parseInt(String(req.params["id"] ?? "0"));
   const idx = usuarios.findIndex(u => u.id === id);
   if (idx === -1) {
     res.status(404).json({ error: "Usuario no encontrado" });
@@ -169,7 +169,7 @@ router.get("/roles", (_req: Request, res: Response) => {
 
 // GET /api/roles/:id – obtener un rol
 router.get("/roles/:id", (req: Request, res: Response) => {
-  const id = parseInt(req.params["id"] ?? "0");
+  const id = parseInt(String(req.params["id"] ?? "0"));
   const rol = roles.find(r => r.id === id);
   if (!rol) {
     res.status(404).json({ error: "Rol no encontrado" });
@@ -207,7 +207,7 @@ router.post("/roles", (req: Request, res: Response) => {
 
 // PUT /api/roles/:id – actualizar rol
 router.put("/roles/:id", (req: Request, res: Response) => {
-  const id = parseInt(req.params["id"] ?? "0");
+  const id = parseInt(String(req.params["id"] ?? "0"));
   const idx = roles.findIndex(r => r.id === id);
   if (idx === -1) {
     res.status(404).json({ error: "Rol no encontrado" });
@@ -221,7 +221,7 @@ router.put("/roles/:id", (req: Request, res: Response) => {
 
 // DELETE /api/roles/:id – eliminar rol
 router.delete("/roles/:id", (req: Request, res: Response) => {
-  const id = parseInt(req.params["id"] ?? "0");
+  const id = parseInt(String(req.params["id"] ?? "0"));
   const rolesProtegidos = [1, 2, 3, 4]; // No se pueden eliminar los roles base
   if (rolesProtegidos.includes(id)) {
     res.status(403).json({ error: "No se pueden eliminar los roles base del sistema" });
